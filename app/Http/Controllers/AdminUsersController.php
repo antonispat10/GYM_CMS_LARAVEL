@@ -63,13 +63,11 @@ class AdminUsersController extends Controller
     {
 
         $request->validate([
-            'age' => 'nullable',
             'name' => 'string',
             'password'=> 'required',
             'email'=>'required|email|unique:users',
             'address'=>'required',
             'telephone'=>'required',
-            'weight'=>'required'
         ]);
 
 
@@ -92,21 +90,24 @@ class AdminUsersController extends Controller
         $user->password= bcrypt($request->password);
         $user->email = $request->email;
         $user->surname = $request->surname;
-        $user->age = $request->age;
-        $user->telephone = $request->age;
+        $user->telephone = $request->telephone;
         $user->address = $request->email;
+        $user->roles()->attach(Role::where('name','User')
+            ->first());
         $user->save();
+
+
+
+
+
+
+
 
         Weight::create([
             'user_id' => $user->id,
             'count' => $request->weight,
         ]);
 
-        Auth::user()->roles()->attach(Role::where('name','Admin')
-            ->first());
-
-//        User::create($input);
-        $user->save();
 
         Session::flash('user_created', 'User Created Succesfully');
 
@@ -186,8 +187,6 @@ class AdminUsersController extends Controller
 
 
         $user->update($input);
-
-        $count['count'] = $request->weight;
         Weight::where('user_id', $user->id)->update($count);
 
 
