@@ -146,9 +146,13 @@ class AdminUsersController extends Controller
 
         $user = User::findOrFail($id);
 
-        if (Gate::allows('update-post', $user)) {
+        $auth = Auth::user()->id;
+
+        if (Gate::allows('update-post', $user,$auth)) {
             return view('admin.Users.edit',compact('user','roles'));
         }
+
+
 
     }
 
