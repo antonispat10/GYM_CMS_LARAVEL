@@ -30,11 +30,16 @@ class AuthServiceProvider extends ServiceProvider
 
         //
         Gate::define('update-post', function ($user,$auth) {
+            $role = '';
+            foreach($user->roles as $role){
+                if($role->name == "Admin"){
+                    $role = "Admin";
+                }
+            }
+        return ( $user->id == $auth->id || $role == 'Admin');
+
+    });
 
 
-
-            return ( $user->id == $auth->id || $user->role_id == 1);
-
-        });
     }
 }

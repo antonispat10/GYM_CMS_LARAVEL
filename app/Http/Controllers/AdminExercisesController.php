@@ -208,11 +208,9 @@ class AdminExercisesController extends Controller
             $exercises = Exercise::findOrFail($request->checkBoxArray);
 
 
-
             foreach ($exercises as $exercise) {
 
                 $exercise->delete();
-                return redirect()->back();
             }
 
 
@@ -221,6 +219,7 @@ class AdminExercisesController extends Controller
             return redirect()->back();
 
         }
+        return redirect()->back();
 
 
     }

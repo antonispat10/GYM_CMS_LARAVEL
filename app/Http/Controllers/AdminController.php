@@ -28,8 +28,12 @@ class AdminController extends Controller
         $current_month  = Carbon::now()->format('F');
         $last_month  = Carbon::now()->subMonth()->format('F');
 
-        $count_current_month = User::where('created_at', '>=',  Carbon::now()->endOfMonth())->count();
-        $count_last_month = User::where('created_at', '>=', Carbon::now()->subMonth())->count();
+        $count_last_m = User::where('created_at', '>=', Carbon::now()->subMonth()->startOfMonth())->count();
+        $count_last_m2 = User::where('created_at', '>=', Carbon::now()->subMonth()->endOfMonth())->count();
+        $count_last_month = $count_last_m - $count_last_m2;
+        $count_current_m = User::where('created_at', '>=',  Carbon::now()->startOfMonth())->count();
+        $count_current_m2 = User::where('created_at', '>=',  Carbon::now()->endofMonth())->count();
+        $count_current_month = $count_current_m - $count_current_m2;
         $total_count = User::count();
 
 
