@@ -10,18 +10,16 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Traits\Glob;
 
 class UserPanelController extends Controller
 {
+    use Glob;
 
     public function __construct()
     {
-        $days = Day::all();
 
-        View::share( 'days', $days);
-
-        $us1 = User::all();
-        View::share( 'us1', $us1);
+        $this->glob();
     }
 
     public function index()
@@ -31,9 +29,8 @@ class UserPanelController extends Controller
 
         $user = Auth::user();
 
-        $weights_all[] = Weight::where('id',Auth::user()->id)->orderBy('id',
+        $weights_all[] = Weight::where('user_id',Auth::user()->id)->orderBy('id',
             'desc')->take(3)->orderBy('id','desc')->get();
-
 
         foreach($weights_all as $weight ){
             foreach($weight as $index=>$w){
@@ -41,7 +38,6 @@ class UserPanelController extends Controller
             $dates[$index] = $w->created_at;
             }
         }
-
         return view('userpanel.index',compact('days','weights','dates','user'));
 
     }
@@ -66,7 +62,7 @@ class UserPanelController extends Controller
 
         $user = Auth::user();
 
-        return view('userpanel.edit',compact('user'));
+        return view('userpanel.edit',compact('user','weight'));
     }
 
     public function update_profile_per_user(Request $request, $id)
@@ -78,12 +74,11 @@ class UserPanelController extends Controller
 
 
 
-        $weight[] = isset($_POST['weight']);
 
-        Weight::create([
-            'user_id' => $user->id,
-            'count' => $input['weight'],
-        ]);
+        $user->weight()->create([
+            'count' => $request->w,]);
+
+
 
 
 

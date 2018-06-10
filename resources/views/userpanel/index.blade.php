@@ -79,6 +79,7 @@
 
 @stop
 
+@if(isset($dates))
 @section('scripts')
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.min.js"></script>
 
@@ -92,7 +93,7 @@
                     @endforeach
                 ],
                 datasets: [{
-                    label: 'Last 3 Weight Count',
+                    label: 'Last Weight Counts',
                     data: [
                         @foreach(array_reverse($weights) as $weight)
                         {{$weight}},
@@ -147,5 +148,6 @@
             crossorigin="anonymous"></script>
 
 @stop
+@endif
 
 

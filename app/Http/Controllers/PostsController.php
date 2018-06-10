@@ -6,18 +6,15 @@ use App\Day;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\View;
+use App\Traits\Glob;
 
 class PostsController extends Controller
 {
+    use Glob;
 
     public function __construct()
     {
-        $days = Day::all();
-
-        View::share( 'days', $days);
-
-        $us1 = User::all();
-        View::share( 'us1', $us1);
+        $this->glob();
     }
 
     public function index()
@@ -27,11 +24,7 @@ class PostsController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         $categories = Category::pluck('name','id')->all();
@@ -39,19 +32,10 @@ class PostsController extends Controller
         return view('admin.posts.create', compact('categories'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(PostsCreateRequest $request)
     {
         $input = $request->all();
-
-
-
-//        $user = Auth::user();
 
         if($file = $request->file('photo_id')){
 
@@ -69,29 +53,11 @@ class PostsController extends Controller
         Auth::user()->posts()->create($input);
 
 
-//        $user->posts()->create($input);
-
         return redirect('/admin/posts');
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -103,13 +69,7 @@ class PostsController extends Controller
         return view('admin.posts.edit',compact('post','categories'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(PostsCreateRequest $request, $id)
     {
 
@@ -129,20 +89,13 @@ class PostsController extends Controller
 
         Auth::user()->posts()->whereId($id)->first()->update($input);
 
-//        $user = Auth::user();
-//
-//        $user->posts()->update($input);
+
 
         return redirect('/admin/posts');
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
 
@@ -165,12 +118,6 @@ class PostsController extends Controller
 
         $categories = Category::all();
 
-
-
-
-
-//        $comments = $post->comment;
-
         return view('post', compact('post','comments', 'categories','cid'));
 
     }
@@ -185,11 +132,6 @@ class PostsController extends Controller
 
         $posts = $cat->posts;
 
-
-
-
-
-//        $comments = $post->comment;
 
         return view('all_posts', compact( 'posts','categories', 'cat'));
 

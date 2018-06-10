@@ -9,31 +9,17 @@ use App\Weight;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Traits\Glob;
+
 
 class HomeController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
+    use Glob;
+
     public function __construct()
     {
-        $days = Day::all();
-
-        View::share( 'days', $days);
-
-        $us1 = User::all();
-        View::share( 'us1', $us1);
-
-
+        $this->glob();
     }
-
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
 
 
     public function news(){

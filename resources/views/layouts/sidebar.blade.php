@@ -31,18 +31,6 @@
 
 
 
-                        <!-- Right Side Of Navbar -->
-
-
-                        <!-- Blog Categories Well -->
-
-
-
-
-
-
-                        <!-- Authentication Links -->
-
                         @if (Auth::guest())
                             <li><a href="{{ url('/login')
                             }}">Login</a></li>
@@ -72,35 +60,21 @@
     <div class="navbar-default sidebar" role="navigation">
         <div class="sidebar-nav navbar-collapse">
             <ul class="nav" id="side-menu">
-                <li class="sidebar-search">
-                    <div class="input-group custom-search-form">
-                        <input type="text" class="form-control" placeholder="Search...">
-                        <span class="input-group-btn">
-                                <button class="btn btn-default" type="button">
-                                    <i class="fa fa-search"></i>
-                                </button>
-                            </span>
-                    </div>
-                    <!-- /input-group -->
-                </li>
+
                 <li>
                     <a href="{{route('user.index')
-                            }}"><i class="fa
-                    fa-dashboard
-                    fa-fw"></i> Dashboard</a>
+                            }}">Dashboard</a>
                 </li>
 
 
                 <li><a href="{{route('news')
                             }}">Blog - News</a></li>
                     <li>
-              <?php  $count = 1; ?>
                 @foreach ($us1 as $user)
-                @if ($count ==1)
+                @if ($user->id == Auth::user()->id)
                 <li><a href="{{route('edit_profile_per_user',
                 $user->id)
                             }}">Edit Profile</a></li>
-                    <?php  $count++; ?>
                     @endif
                     @endforeach
 

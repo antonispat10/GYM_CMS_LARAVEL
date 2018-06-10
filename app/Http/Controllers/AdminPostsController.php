@@ -8,18 +8,16 @@ use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\View;
+use App\Traits\Glob;
+
 
 class AdminPostsController extends Controller
 {
+    use Glob;
 
     public function __construct()
     {
-        $days = Day::all();
-
-        View::share( 'days', $days);
-
-        $us1 = User::all();
-        View::share( 'us1', $us1);
+        $this->glob();
     }
 
     public function index()
@@ -29,23 +27,14 @@ class AdminPostsController extends Controller
         return view('admin.posts.index', compact('posts'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
 
         return view('admin.posts.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
         $input = $request->all();
@@ -76,23 +65,7 @@ class AdminPostsController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
-    }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         $post = Post::findOrFail($id);
@@ -103,13 +76,7 @@ class AdminPostsController extends Controller
         return view('admin.posts.edit',compact('post'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
 
@@ -139,12 +106,7 @@ class AdminPostsController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
 

@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Day;
 use App\Exercise;
-use App\Http\Requests\UsersEditRequest;
 use App\Role;
 use App\User;
 use App\Weight;
@@ -13,25 +12,16 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
+use App\Traits\Glob;
 
 class AdminUsersController extends Controller
 {
-
+    use Glob;
     public function __construct()
     {
-        $days = Day::all();
-
-        View::share( 'days', $days);
-
-        $us1 = User::all();
-        View::share( 'us1', $us1);
+        $this->glob();
     }
 
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
         $users = User::all();
@@ -39,11 +29,6 @@ class AdminUsersController extends Controller
         return view('admin.users.index', compact('users'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $roles = Role::pluck('name','id')->all();
@@ -53,12 +38,7 @@ class AdminUsersController extends Controller
 
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
 
@@ -92,21 +72,19 @@ class AdminUsersController extends Controller
         $user->surname = $request->surname;
         $user->telephone = $request->telephone;
         $user->address = $request->email;
-        $user->roles()->attach(Role::where('name','User')
-            ->first());
+
         $user->save();
 
+        $user->roles()->attach(Role::where('name','User')
+            ->first());
+
+        $user->weight()->create(['user_id' => $user->id,
+            'count' => $request->weight,]);
 
 
 
 
 
-
-
-        Weight::create([
-            'user_id' => $user->id,
-            'count' => $request->weight,
-        ]);
 
 
         Session::flash('user_created', 'User Created Succesfully');
@@ -115,31 +93,16 @@ class AdminUsersController extends Controller
 
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-//        $day = Day::findOrFail($id);
-//        $user = Auth::user()->id;
-//        $exercises = Exercise::where('user_id', $user)
-//            ->where('day_id', 'LIKE' ,'%'. $day .'%')->get();
-//        return view('admin.Users.show',compact('day','exercises'));
 
         $days = Day::all();
         return view ('admin.users.show',compact('days'));
 
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $roles = Role::pluck('name','id')->all();
@@ -156,13 +119,7 @@ class AdminUsersController extends Controller
 
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         $user = User::findOrFail($id);
@@ -200,12 +157,7 @@ class AdminUsersController extends Controller
         return redirect('/admin/users');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         $user = User::findOrFail($id);
