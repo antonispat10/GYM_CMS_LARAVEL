@@ -38,7 +38,7 @@ class DatabaseSeeder extends Seeder
         Exerciselist::insert(['name' => '"Squats"']);
 
 
-        $role_admin = Role::where('name','admin')->first();
+        $role_admin = Role::where('name','Admin')->first();
 
         $user = new User();
         $user->id = 100;
@@ -67,14 +67,10 @@ class DatabaseSeeder extends Seeder
 //        factory(App\Exerciselist::class, 5)->create();
 //
 //
-//        DB::table('roles')->insert([
-//            'name' => 'User',
-//
-//        ]);
-//        DB::table('roles')->insert([
-//            'name' => 'Author',
-//
-//        ]);
+        DB::table('roles')->insert([
+            'name' => 'User',
+
+        ]);
 //
 //
 //        $role_user = Role::where('name','user')->first();
