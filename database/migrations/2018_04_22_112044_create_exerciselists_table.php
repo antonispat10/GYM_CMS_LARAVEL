@@ -13,7 +13,7 @@ class CreateExerciselistsTable extends Migration
      */
     public function up()
     {
-        Schema::create('exerciselists', function (Blueprint $table) {
+        Schema::create('exercise_lists', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->timestamps();
@@ -27,6 +27,6 @@ class CreateExerciselistsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('exerciselists');
+        Schema::dropIfExists('exercise_lists');
     }
 }
