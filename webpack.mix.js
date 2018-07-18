@@ -12,9 +12,6 @@ var mix = require('laravel-mix');
  */
 
 mix.js('resources/assets/js/app.js', 'public/js')
-   .sass('resources/assets/sass/app.scss', 'public/css');
-
-mix.less('resources/assets/less/mixins.less', 'public/css/less');
-mix.less('resources/assets/less/sb-admin-2.less', 'public/css/less');
-mix.less('resources/assets/less/variables.less', 'public/css/less');
+    .sass('resources/assets/sass/app.scss', 'public/css')
+    .less('resources/assets/less/sb-admin-2.less', 'public/css/less');
 
