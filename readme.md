@@ -51,6 +51,15 @@ The database will be created and supplied with basic data.
 php artisan migrate --seed
 ```
 
+To install the NPM packages, run:
+```bash
+npm install
+```
+And to compile the assets, run:
+```bash
+npm run prod
+```
+
 You can now log in with the email admin@admin.com and password: 543210 in order to view
 and use the admin panel
 
