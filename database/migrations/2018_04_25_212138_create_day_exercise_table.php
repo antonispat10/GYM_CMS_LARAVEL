@@ -13,7 +13,7 @@ class CreateDayExerciseTable extends Migration
      */
     public function up()
     {
-        Schema::create('day_exercise', function (Blueprint $table) {
+        Schema::create('day_exercises', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('exercise_id')->unsigned()->index();
 

@@ -2,102 +2,84 @@
 
 namespace App\Http\Controllers;
 
-use App\Day;
-use App\User;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\View;
-use App\Traits\Glob;
+use App\Models\Post;
 
-class PostsController extends Controller
-{
-    use Glob;
+class PostsController extends Controller {
+    public function __construct() {
 
-    public function __construct()
-    {
-        $this->glob();
+        parent::__construct();
     }
 
-    public function index()
-    {
+    public function index() {
+
         $posts = Post::paginate(4);
 
         return view('admin.posts.index', compact('posts'));
     }
 
+    public function create() {
 
-    public function create()
-    {
-        $categories = Category::pluck('name','id')->all();
+        //Categories don't exist
+
+        $categories = [];
 
         return view('admin.posts.create', compact('categories'));
     }
 
+    public function store(Request $request) {
 
-    public function store(PostsCreateRequest $request)
-    {
         $input = $request->all();
 
-        if($file = $request->file('photo_id')){
+        if($file = $request->file('photo_id')) {
 
             $name = time() . $file->getClientOriginalName();
 
             $file->move('images', $name);
 
-            $photo = Photo::create(['file'=>$name]);
+            //Doesn't exist
+
+            $photo = Photo::create(['file' => $name]);
 
             $input['photo_id'] = $photo->id;
-
         }
-
 
         Auth::user()->posts()->create($input);
 
-
         return redirect('/admin/posts');
-
     }
 
+    public function edit($id) {
 
-    public function edit($id)
-    {
         $post = Post::findOrFail($id);
 
-        $categories = Category::pluck('name','id')->all();
+        $categories = Category::pluck('name', 'id')->all();
 
-
-
-        return view('admin.posts.edit',compact('post','categories'));
+        return view('admin.posts.edit', compact('post', 'categories'));
     }
 
-
-    public function update(PostsCreateRequest $request, $id)
-    {
+    public function update(PostsCreateRequest $request, $id) {
 
         $input = $request->all();
 
-        if($file = $request->file('photo_id')){
+        if($file = $request->file('photo_id')) {
 
             $name = time() . $file->getClientOriginalName();
 
             $file->move('images', $name);
 
-            $photo = Photo::create(['file'=>$name]);
+            //Doesn't exist
+
+            $photo = Photo::create(['file' => $name]);
 
             $input['photo_id'] = $photo->id;
-
         }
 
         Auth::user()->posts()->whereId($id)->first()->update($input);
 
-
-
         return redirect('/admin/posts');
-
     }
 
-
-    public function destroy($id)
-    {
+    public function destroy($id) {
 
         $post = Post::findOrFail($id);
 
@@ -106,34 +88,31 @@ class PostsController extends Controller
         $post->delete();
 
         return redirect('/admin/posts');
-
     }
 
-    public function post($slug){
+    public function post($slug) {
 
         $post = Post::findBySlugOrFail($slug);
 
         $comments = $post->comments()->whereIsActive(1)->get();
 
+        //Categories don't exist
 
         $categories = Category::all();
 
-        return view('post', compact('post','comments', 'categories','cid'));
-
+        return view('post', compact('post', 'comments', 'categories', 'cid'));
     }
 
+    public function all_posts($slug) {
 
-    public function all_posts($slug){
+        //Categories don't exist
 
         $categories = Category::all();
 
         $cat = Category::findBySlugOrFail($slug);
 
-
         $posts = $cat->posts;
 
-
-        return view('all_posts', compact( 'posts','categories', 'cat'));
-
+        return view('all_posts', compact('posts', 'categories', 'cat'));
     }
 }

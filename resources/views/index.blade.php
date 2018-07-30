@@ -1,120 +1,115 @@
-
 @extends('layouts.app')
-
-
 
 @section('content')
 
 
     <canvas id="myChart" style=""></canvas>
 
-
-
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Dashboard</h1>
-            </div>
-            <!-- /.col-lg-12 -->
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Dashboard</h1>
         </div>
-        <!-- /.row -->
-        <div class="row">
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-comments fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">26</div>
-                                <div>New Comments!</div>
-                            </div>
+        <!-- /.col-lg-12 -->
+    </div>
+    <!-- /.row -->
+    <div class="row">
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-comments fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">26</div>
+                            <div>New Comments!</div>
                         </div>
                     </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
                 </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-green">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-tasks fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">12</div>
-                                <div>New Tasks!</div>
-                            </div>
-                        </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
                     </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-yellow">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class="fa fa-shopping-cart fa-5x"></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">124</div>
-                                <div>New Orders!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class=""></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6">
-                <div class="panel panel-red">
-                    <div class="panel-heading">
-                        <div class="row">
-                            <div class="col-xs-3">
-                                <i class=""></i>
-                            </div>
-                            <div class="col-xs-9 text-right">
-                                <div class="huge">13</div>
-                                <div>Support Tickets!</div>
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#">
-                        <div class="panel-footer">
-                            <span class="pull-left">View Details</span>
-                            <span class="pull-right"><i class=""></i></span>
-                            <div class="clearfix"></div>
-                        </div>
-                    </a>
-                </div>
+                </a>
             </div>
         </div>
-
-        <!-- /.panel-footer -->
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-green">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-tasks fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">12</div>
+                            <div>New Tasks!</div>
+                        </div>
+                    </div>
                 </div>
-                <!-- /.panel .chat-panel -->
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
             </div>
-            <!-- /.col-lg-4 -->
         </div>
-        <!-- /.row -->
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-yellow">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class="fa fa-shopping-cart fa-5x"></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">124</div>
+                            <div>New Orders!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class=""></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6">
+            <div class="panel panel-red">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-xs-3">
+                            <i class=""></i>
+                        </div>
+                        <div class="col-xs-9 text-right">
+                            <div class="huge">13</div>
+                            <div>Support Tickets!</div>
+                        </div>
+                    </div>
+                </div>
+                <a href="#">
+                    <div class="panel-footer">
+                        <span class="pull-left">View Details</span>
+                        <span class="pull-right"><i class=""></i></span>
+                        <div class="clearfix"></div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- /.panel-footer -->
+    </div>
+    <!-- /.panel .chat-panel -->
+    </div>
+    <!-- /.col-lg-4 -->
+    </div>
+    <!-- /.row -->
     </div>
     <!-- /#page-wrapper -->
 
@@ -126,15 +121,15 @@
     <script>
         var ctx = document.getElementById("myChart").getContext('2d');
         var myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ["Posts"],
+            type   : 'bar',
+            data   : {
+                labels  : ["Posts"],
                 datasets: [{
-                    label: '# of Votes',
-                    data: [
+                    label          : '# of Votes',
+                    data           : [
                         @foreach($weights as $weight)
-                        5{{$weight->id}}
-                    @endforeach
+                            5{{$weight->id}}
+                        @endforeach
                     ],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -144,7 +139,7 @@
                         'rgba(153, 102, 255, 0.2)',
                         'rgba(255, 159, 64, 0.2)'
                     ],
-                    borderColor: [
+                    borderColor    : [
                         'rgba(255,99,132,1)',
                         'rgba(54, 162, 235, 1)',
                         'rgba(255, 206, 86, 1)',
@@ -152,14 +147,14 @@
                         'rgba(153, 102, 255, 1)',
                         'rgba(255, 159, 64, 1)'
                     ],
-                    borderWidth: 1
+                    borderWidth    : 1
                 }]
             },
             options: {
                 scales: {
                     yAxes: [{
                         ticks: {
-                            beginAtZero:true
+                            beginAtZero: true
                         }
                     }]
                 }
@@ -167,23 +162,23 @@
         });
     </script>
 
-<!-- /#wrapper -->
+    <!-- /#wrapper -->
 
-<!-- jQuery -->
-<script src="{{asset('js/app.js')}}"></script>
-<script src="{{asset('js/jq.js') }}"></script>
-<script src="{{asset('js/libs.js')}}"></script>
-<script src="{{asset('js/libs/bootstrap.js')}}"></script>
-<script src="{{asset('js/libs/jquery.js')}}"></script>
-<script src="{{asset('js/libs/metisMenu.js')}}"></script>
-{{--<script src="{{asset('js/libs/sb-admin-2.js')}}"></script>--}}
-<script src="{{asset('js/libs/scripts.js')}}"></script>
+    <!-- jQuery -->
+    <script src="{{asset('js/app.js')}}"></script>
+    <script src="{{asset('js/jq.js') }}"></script>
+    <script src="{{asset('js/libs.js')}}"></script>
+    <script src="{{asset('js/libs/bootstrap.js')}}"></script>
+    <script src="{{asset('js/libs/jquery.js')}}"></script>
+    <script src="{{asset('js/libs/metisMenu.js')}}"></script>
+    {{--<script src="{{asset('js/libs/sb-admin-2.js')}}"></script>--}}
+    <script src="{{asset('js/libs/scripts.js')}}"></script>
 
-<script
-        src="https://code.jquery.com/jquery-3.2.1.js"
-        integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-        crossorigin="anonymous"></script>
+    <script
+            src="https://code.jquery.com/jquery-3.2.1.js"
+            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+            crossorigin="anonymous"></script>
 
-    @stop
+@stop
 
 
