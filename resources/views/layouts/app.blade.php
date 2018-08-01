@@ -10,12 +10,38 @@
 
     <title>Dashboard</title>
 
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="{{asset('css/libs/font-awesome.min.css')}}" rel="stylesheet">
+    <link href="{{asset('css/libs/font-awesome.css')}}" rel="stylesheet">
 
-    <link href="{{mix('css/less/sb-admin-2.css')}}" rel="stylesheet">
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- MetisMenu CSS -->
+    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+
+    <!-- Morris Charts CSS -->
+    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="{{asset('css/less/sb-admin-2.css')}}"
+          rel="stylesheet">
+    <link href="{{asset('css/less/mixins.css')}}"
+          rel="stylesheet">
+    <link href="{{asset('css/less/variables.css')}}"
+          rel="stylesheet">
+
     <link href="{{asset('css/libs/blog-post.css')}}" rel="stylesheet">
+    <link href="{{asset('css/libs/bootstrap.css')}}" rel="stylesheet">
+    <link href="{{asset('css/libs/font-awesome.css')}}" rel="stylesheet">
     <link href="{{asset('css/libs/metisMenu.css')}}" rel="stylesheet">
+    <link href="{{asset('css/libs/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{asset('css/libs/style.css')}}" rel="stylesheet">
+
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
