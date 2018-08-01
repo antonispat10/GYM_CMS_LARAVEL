@@ -31,7 +31,7 @@
             <td><img height="50" src="\{{$post->photo ? $post->photo: $post->photoPlaceholder()}}"></td>
             <td><a href="{{route('admin.posts.edit', $post->id)}}">{{$post->user ? $post->user->name : 'Antonis'}}</a></td>
             <td>{{$post->title}}</td>
-            <td>{{str_limit($post->body,30)}}</td>
+            <td><?php echo str_limit($post->body,30) ?></td>
             <td>{{$post->created_at->diffForhumans()}}</td>
             <td>{{$post->updated_at->diffForhumans()}}</td>
         </tr>

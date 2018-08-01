@@ -14,6 +14,10 @@
 
 <h1> Create Exercises for the user </h1>
 
+    <div class="row">
+        @include('error')
+    </div>
+
 
 {!! Form::open(['method'=>'POST', 'action'=>
 'AdminExercisesController@store','files'=>true]) !!}
@@ -32,9 +36,9 @@
 
     <div class="form-group">
 
-        {!! Form::label('exerciselist_id', 'Exercise Name') !!}
-        {!! Form::select('exerciselist_id', [''=>'Choose
-        Exercise'] + $exerciselist ,null,
+        {!! Form::label('exercise_list_id', 'Exercise Name') !!}
+        {!! Form::select('exercise_list_id', [''=>'Choose
+        Exercise'] + $exercise_list ,null,
         ['class'=>'form-control'])!!}
 
     </div>

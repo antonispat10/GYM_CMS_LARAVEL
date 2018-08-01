@@ -7,7 +7,10 @@
 
     <h1> Add type of exercise (e.g. Push ups) </h1>
 
-    @include('error')
+    <div class="row">
+        @include('error')
+    </div>
+
 
     <?php if(session('exercise_created')): ?>
     <div class="alert alert-success">

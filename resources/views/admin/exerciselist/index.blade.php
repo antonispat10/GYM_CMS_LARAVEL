@@ -4,7 +4,9 @@
 
 
     <h1>  Exercise List </h1>
-
+    <div class="row">
+        @include('error')
+    </div>
 
     <br>
 

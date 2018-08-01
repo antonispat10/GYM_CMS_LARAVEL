@@ -5,7 +5,9 @@
 
     <script src="{{asset('js/jq.js') }}"></script>
 
-
+    <div class="row">
+        @include('error')
+    </div>
 
 
     {!! Form::model($user,['method'=>'PATCH', 'action'=>

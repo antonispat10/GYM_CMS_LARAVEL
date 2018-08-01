@@ -8,6 +8,10 @@
     <h1> Edit Posts </h1>
 
     <div class="row">
+        @include('error')
+    </div>
+
+    <div class="row">
         
         <div class="col-sm-3">
 
