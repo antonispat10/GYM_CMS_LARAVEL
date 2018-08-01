@@ -32,12 +32,22 @@ class AdminPostsController extends Controller {
 
         if($photo = $request->file('photo')) {
 
+            $validation = $request->validate([
+                'photo' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+                // for multiple file uploads
+                // 'photo.*' => 'required|file|image|mimes:jpeg,png,gif,webp|max:2048'
+            ]);
+            $photo      = $validation['photo']; // get the validated file
+
+
             $name = time() . $photo->getClientOriginalName();
 
             $d = $photo->move('images\posts', $name);
 
             $input['photo'] = $d;
         }
+
+
 
         Auth::user()->posts()->create($input);
 

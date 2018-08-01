@@ -23,7 +23,6 @@ class Post extends Model
 //        ];
 //    }
 
-    protected $uploads = '/images/posts/';
 
 
     protected $fillable = [
@@ -46,8 +45,5 @@ class Post extends Model
 
     }
 
-    public function getPhotoAttribute($photo){
-        return $this->uploads . $photo;
-    }
 
 }

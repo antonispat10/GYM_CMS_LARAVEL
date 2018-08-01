@@ -5,7 +5,9 @@
 
     <h1> User {{$user->name}} Exercises </h1>
     <input name="user_id" value="{{$user->id}}"hidden>
-
+    <div class="row">
+        @include('error')
+    </div>
 
     <br>
 

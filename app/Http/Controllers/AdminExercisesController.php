@@ -39,19 +39,27 @@ class AdminExercisesController extends Controller {
 
     public function create() {
 
-        $exerciselist = ExerciseList::pluck('name', 'id')->all();
+        $exercise_list = ExerciseList::pluck('name', 'id')->all();
 
         $days = Day::pluck('name', 'id')->all();
 
         $users = User::pluck('name', 'id')->toArray();
 
         return view('admin.exercises.create', compact
-        ('exerciselist', 'days', 'users'));
+        ('exercise_list', 'days', 'users'));
     }
 
     public function store(Request $request) {
 
         $input = $request->all();
+
+        $request->validate([
+            'user_id' => 'required',
+            'exercise_list_id' => 'required',
+            'day_id' => 'required',
+            'set' => 'required|integer',
+            'reps' => 'required|integer',
+        ]);
 
         $json = json_encode($input['day_id'], true);
 
@@ -67,8 +75,8 @@ class AdminExercisesController extends Controller {
         $count2 = 0;
 
         for($i = 1; $i <= $count; $i++) {
-            if(sizeof(Exercise::where('exerciselist_id', '=', Input::get
-                ('exerciselist_id'))->where('day_id', '=',
+            if(sizeof(Exercise::where('exercise_list_id', '=', Input::get
+                ('exercise_list_id'))->where('day_id', '=',
                     $k[$i])->where('user_id', '=', Input::get('user_id'))->get()) > 0) {
                 // user found
 
@@ -86,7 +94,7 @@ class AdminExercisesController extends Controller {
                 $id = $request['id'];
                 $exercise->day_id = $k[$i];
                 $exercise->user_id = $request['user_id'];
-                $exercise->exerciselist_id = $request['exerciselist_id'];
+                $exercise->exercise_list_id = $request['exercise_list_id'];
                 $exercise->set = $request['set'];
                 $exercise->reps = $request['reps'];
 
