@@ -17,7 +17,8 @@ class CheckRole
     {
 
         if ($request->user() === null) {
-            return response("Insufficient permissions", 401);
+            return redirect('/');
+
 
         }
 
