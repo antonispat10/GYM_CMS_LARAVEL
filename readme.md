@@ -21,7 +21,7 @@
 
 First, clone the repository (https or ssh):
 ```bash
-git clone https://github.com/roelofjan-elsinga/GYM_CMS_LARAVEL.git
+git clone https://github.com/antonispat10/GYM_CMS_LARAVEL.git
 ```
 
 Then change directory into the repository
