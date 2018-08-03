@@ -2,42 +2,38 @@
 
 @section('content')
 
-    @if($posts)
+    <h1>Posts</h1>
 
-        @foreach($posts as $post)
+    @foreach($posts as $post)
+        <div class="post">
+            <div class="post-content">
+                <a href="{{route('post', $post->id)}}">
+                    <h4>{{$post->title}}</h4>
+                </a>
 
-            <a href="{{route('post',$post->id)}}"><h3>{{$post->title}}</h3></a>
+                <!-- Preview Image -->
+                <img class="img-responsive"
+                     style="max-height:450px;max-width:500px;"
+                     src="{{$post->photo ? $post->photo : $post->photoPlaceholder()}}" alt="">
 
-            <!-- Author -->
-            <p class="lead">
-                by {{$post->user ? $post->user->name : 'Antonis'}}
-            </p>
+                <!-- Post Content -->
+                {!! $post->body !!}
+            </div>
 
-            <hr>
+            <div class="post-footer">
+                <div class="author">
+                    <span class="fa fa-user-o"></span>&nbsp;
 
-            <!-- Date/Time -->
-            <p><span class="glyphicon glyphicon-time"></span>Posted {{$post->created_at->diffForHumans()}}</p>
+                    {{$post->user ? $post->user->name : 'Antonis'}}
+                </div>
 
-            <hr>
+                <div class="publish-date">
+                    <span class="fa fa-clock-o"></span>&nbsp;Posted {{$post->created_at->diffForHumans()}}
+                </div>
+            </div>
+        </div>
+    @endforeach
 
-            <!-- Preview Image -->
-            <img class="img-responsive"
-                 style="max-height:450px;max-width:500px;"
-                 src="{{$post->photo ? $post->photo: $post->photoPlaceholder()}}" alt="">
-
-            <hr>
-
-            <!-- Post Content -->
-            <p><?php $post->body ?></p>
-            <hr>
-
-
-
-
-
-        @endforeach
-
-    @endif
     <div class="text-center">
         {{$posts->links()}}
     </div>

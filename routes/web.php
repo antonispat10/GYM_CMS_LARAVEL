@@ -11,19 +11,26 @@
 |
 */
 
-use App\Day;
-use App\User;
 use Illuminate\Support\Facades\Auth;
 
+Route::get('news', [
+    'as'   => 'news',
+    'uses' => 'HomeController@news',
+]);
 
-//['uses'=>'HomeController@index','middleware' => 'roles:admin']
+Route::get('post/{id}', [
+    'as'   => 'post',
+    'uses' => 'HomeController@post',
+]);
 
+Route::get('/', function() {
+    return redirect()->route('news');
+});
 
-Route::get('news', 'HomeController@news')->name('news');
-
-Route::get('post/{id}', 'HomeController@post')->name('post');
-
-Route::get('/', [ 'uses' => 'HomeController@news' ]);
+Route::get('news', [
+    'as'   => 'news',
+    'uses' => 'HomeController@news',
+]);
 
 Auth::Routes();
 
@@ -33,49 +40,42 @@ Route::get('logout', 'Auth\LoginController@logout');
 Route::group([ 'middleware' => 'roles:admin' ], function () {
 
 
-    Route::get('admin', 'AdminController@index')->name('admin');
+    Route::get('admin', [
+        'as'   => 'admin',
+        'uses' => 'AdminController@index',
+    ]);
 
 
-    Route::get('admin/exercises/edit/{id}',
-        [ 'uses' => 'AdminExercisesController@admin_exercises_edit_per_user' ])->name('admin_exercises_edit_per_user');
-
+    Route::get('admin/exercises/edit/{id}', [
+        'as'   => 'admin_exercises_edit_per_user',
+        'uses' => 'AdminExercisesController@admin_exercises_edit_per_user',
+    ]);
 
     Route::resource('admin/posts', 'AdminPostsController', [
         'names' => [
-
             'index'  => 'admin.posts.index',
             'create' => 'admin.posts.create',
             'store'  => 'admin.posts.store',
             'edit'   => 'admin.posts.edit',
-
-
         ],
     ]);
 
 
     Route::resource('admin/exercises', 'AdminExercisesController', [
         'names' => [
-
-
             'index'   => 'admin.exercises.index',
             'create'  => 'admin.exercises.create',
             'store'   => 'admin.exercises.store',
             'edit'    => 'admin.exercises.edit',
             'destroy' => 'admin.exercises.destroy',
-
-
         ],
     ]);
 
     Route::resource('admin/exerciselist', 'AdminExerciseListController', [
         'names' => [
-
-
             'index'  => 'admin.exerciselist.index',
             'create' => 'admin.exerciselist.create',
             'store'  => 'admin.exerciselist.store',
-
-
         ],
     ]);
 
@@ -91,26 +91,26 @@ Route::group([ 'middleware' => 'roles:admin' ], function () {
     ]);
 
 
-    Route::delete('admin/delete/exercises',
-        [ 'uses' => 'AdminExercisesController@exercises_delete_array' ])->name('exercises_delete_array');
-
-
-    Route::get('news', 'HomeController@news')->name('news');
+    Route::delete('admin/delete/exercises', [
+        'as'   => 'exercises_delete_array',
+        'uses' => 'AdminExercisesController@exercises_delete_array',
+    ]);
 
     Route::post('admin/users', 'AdminUsersController@store');
 
-    Route::post('admin/user_roles', 'AdminUsersController@postAdminAssignRoles')->name('assign_roles');
+    Route::post('admin/user_roles', [
+        'as'   => 'assign_roles',
+        'uses' => 'AdminUsersController@postAdminAssignRoles',
+    ]);
 
 
     Route::resource('admin/users', 'AdminUsersController', [
         'names' => [
-
             'store'  => 'admin.users.store',
             'index'  => 'admin.users.index',
             'create' => 'admin.users.create',
             'show'   => 'admin.users.show',
             'edit'   => 'admin.users.edit',
-
         ],
     ]);
 
@@ -118,17 +118,24 @@ Route::group([ 'middleware' => 'roles:admin' ], function () {
 
 Route::group([ 'middleware' => 'roles:user' ], function () {
 
+    Route::patch('user/edit/{user}', [
+        'as'   => 'update_profile_per_user',
+        'uses' => 'UserPanelController@update_profile_per_user',
+    ]);
+    Route::get('user/edit/{id}', [
+        'as'   => 'edit_profile_per_user',
+        'uses' => 'UserPanelController@edit_profile_per_user',
+    ]);
 
-    Route::patch('user/edit/{user}',
-        [ 'uses' => 'UserPanelController@update_profile_per_user' ])->name('update_profile_per_user');
-    Route::get('user/edit/{id}',
-        [ 'uses' => 'UserPanelController@edit_profile_per_user' ])->name('edit_profile_per_user');
+    Route::get('user/program/{id}', [
+        'as'   => 'program',
+        'uses' => 'UserPanelController@program_per_user_per_day',
+    ]);
 
-
-    Route::get('user/program/{id}', [ 'uses' => 'UserPanelController@program_per_user_per_day' ])->name('program');
-
-    Route::get('user', [ 'uses' => 'UserPanelController@index' ])->name('user.index');
-
+    Route::get('user', [
+        'as'   => 'user.index',
+        'uses' => 'UserPanelController@index',
+    ]);
 
 });
 

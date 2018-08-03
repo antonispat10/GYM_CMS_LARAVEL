@@ -13,13 +13,12 @@ class HomeController extends Controller {
 
     public function news() {
 
-        $posts = Post::paginate(6);
+        $posts = Post::orderBy('created_at', 'desc')->paginate(20);
 
         $admin = false;
 
         if(Auth::check()) {
-
-            $admin = (Auth::user()) ? Auth::user()->hasAnyRole('Admin') : false;
+            $admin = !is_null(Auth::user()) ? Auth::user()->hasAnyRole('Admin') : false;
         }
 
         return view('news', compact('posts', 'admin'));

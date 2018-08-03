@@ -32,7 +32,7 @@ class AdminController extends Controller {
         $weights = Weight::where('user_id', '4')->orderBy('id',
             'desc')->take(3)->get();
 
-        return view('Admin.index', compact('days', 'weights', 'post_count', 'user_count', 'current_month', 'last_month', 'count_last_month', 'count_current_month', 'total_count'));
+        return view('admin.index', compact('days', 'weights', 'post_count', 'user_count', 'current_month', 'last_month', 'count_last_month', 'count_current_month', 'total_count'));
     }
 
 }

@@ -102,17 +102,6 @@
             </div>
         </div>
     </div>
-
-    <!-- /.panel-footer -->
-    </div>
-    <!-- /.panel .chat-panel -->
-    </div>
-    <!-- /.col-lg-4 -->
-    </div>
-    <!-- /.row -->
-    </div>
-    <!-- /#page-wrapper -->
-
 @stop
 
 @section('scripts')
@@ -161,23 +150,6 @@
             }
         });
     </script>
-
-    <!-- /#wrapper -->
-
-    <!-- jQuery -->
-    <script src="{{asset('js/app.js')}}"></script>
-    <script src="{{asset('js/jq.js') }}"></script>
-    <script src="{{asset('js/libs.js')}}"></script>
-    <script src="{{asset('js/libs/bootstrap.js')}}"></script>
-    <script src="{{asset('js/libs/jquery.js')}}"></script>
-    <script src="{{asset('js/libs/metisMenu.js')}}"></script>
-    {{--<script src="{{asset('js/libs/sb-admin-2.js')}}"></script>--}}
-    <script src="{{asset('js/libs/scripts.js')}}"></script>
-
-    <script
-            src="https://code.jquery.com/jquery-3.2.1.js"
-            integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
-            crossorigin="anonymous"></script>
 
 @stop
 

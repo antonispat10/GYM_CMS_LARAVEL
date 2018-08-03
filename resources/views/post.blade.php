@@ -3,33 +3,22 @@
 
 @section('content')
 
+    <div class="col-xs-12">
 
-    <div class="col-md-9">
-        <!-- Blog Post -->
-
-        <!-- Title -->
         <h1>{{$post->title}}</h1>
-
-        <!-- Author -->
-        <p class="lead">
-            by <a href="#">{{$post->user ? $post->user->name : 'Antonis'}}</a>
-        </p>
-
-        <hr>
-
-        <!-- Date/Time -->
-        <p><span class="glyphicon glyphicon-time"></span>Posted {{$post->created_at->diffForHumans()}}</p>
-
-        <hr>
 
         <!-- Preview Image -->
         <img class="img-responsive" style="max-height:400px;" src="\{{$post->photo ? $post->photo : $post->photoPlaceholder()}}" alt="">
 
-        <hr>
-
         <!-- Post Content -->
         <p><?php echo $post->body ?></p>
-        <hr>
+
+        <p>
+            <span class="fa fa-clock-o"></span>&nbsp;
+            Posted {{$post->created_at->diffForHumans()}}&nbsp;
+            by {{$post->user ? $post->user->name : 'Antonis'}}
+        </p>
+
         <div id="disqus_thread"></div>
         <script>
 
