@@ -5,8 +5,19 @@
 // Variables
 @import "variables";
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+@import "post";
+
+h1, h2, h3, h4, h5, h6 {
+  color: $dark;
+}
+
+body {
+    background-color: white;
+}
+
+#wrapper {
+  margin-bottom: 16px;
+}
 
 .navbar-laravel {
   background-color: #fff;

@@ -7,40 +7,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
     <meta name="author" content="">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
 
     <title>Dashboard</title>
 
-    <link href="{{asset('css/libs/font-awesome.min.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/font-awesome.css')}}" rel="stylesheet">
-
-
     <!-- Bootstrap Core CSS -->
-    <link href="../vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="../vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
-
-    <!-- Custom CSS -->
-    <link href="../dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.9/metisMenu.min.css" rel="stylesheet">
 
     <!-- Morris Charts CSS -->
-    <link href="../vendor/morrisjs/morris.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/morris.js/0.5.1/morris.min.js" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="../vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
-    <link href="{{asset('css/less/sb-admin-2.css')}}"
-          rel="stylesheet">
-    <link href="{{asset('css/less/mixins.css')}}"
-          rel="stylesheet">
-    <link href="{{asset('css/less/variables.css')}}"
-          rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
 
     <link href="{{asset('css/libs/blog-post.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/bootstrap.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/font-awesome.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/metisMenu.css')}}" rel="stylesheet">
-    <link href="{{asset('css/libs/sb-admin-2.css')}}" rel="stylesheet">
+    <link href="{{mix('css/less/sb-admin-2.css')}}" rel="stylesheet">
     <link href="{{asset('css/libs/style.css')}}" rel="stylesheet">
+    <link href="{{mix('css/app.css')}}" rel="stylesheet">
 
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -58,17 +44,8 @@
 @yield('sidebar')
 
 <!-- Page Content -->
-<div id="page-wrapper">
-    <div class="container-fluid">
-        <div class="col-lg-12">
-            <h1 class="page-header"></h1>
-        @yield('content')
-
-        <!-- /.col-lg-12 -->
-        </div>
-        <!-- /.row -->
-    </div>
-    <!-- /.container-fluid -->
+<div class="container">
+    @yield('content')
 </div>
 
 <script
@@ -76,12 +53,11 @@
         integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
         crossorigin="anonymous"></script>
 
-<script src="{{mix('js/app.js')}}"></script>
 <script src="{{asset('js/jq.js') }}"></script>
 <script src="{{asset('js/libs.js')}}"></script>
-<script src="{{asset('js/libs/bootstrap.js')}}"></script>
-<script src="{{asset('js/libs/jquery.js')}}"></script>
-<script src="{{asset('js/libs/metisMenu.js')}}"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/metisMenu/2.7.9/metisMenu.min.js"></script>
 <script src="{{asset('js/libs/scripts.js')}}"></script>
 
 @yield('scripts')
